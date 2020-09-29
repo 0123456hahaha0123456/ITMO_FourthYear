@@ -33,7 +33,7 @@ public class OpenHashTest {
         assertEquals(1000, hash.getSize());
         assertTrue(hash.find(132));
         assertEquals("Expected size of hash is 1000, but found" + hash.getSizeHashValue(132), 1000, hash.getSizeHashValue(132));
-        assertEquals("Expected size of hash is 1, but found" + hash.getSizeHashValue(132), 1, hash.getSizeHashValue(132));
+        assertNotEquals("Expected size of hash is 1, but found" + hash.getSizeHashValue(132), 1, hash.getSizeHashValue(132));
 
     }
 

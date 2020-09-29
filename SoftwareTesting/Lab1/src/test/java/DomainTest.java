@@ -100,6 +100,12 @@ public class DomainTest {
         assertEquals("main", duc.getName());
     }
 
+    @Test public void testAddNull(){
+        SpaceShip spaceShip = new SpaceShip("RUSSIA",1550);
+        spaceShip.addPeopleToSpaceShip(null);
+        assertEquals(0, spaceShip.getNumberPeople());
+    }
+
     @Test public void testAddMotorToSpaceShip() {
         SpaceShip spaceShip = new SpaceShip("USA", 2000);
         for (int i = 0; i < 10; i++) {
@@ -134,5 +140,4 @@ public class DomainTest {
         spaceShip.addMotorToSpaceShip(motor);
         assertEquals("Spaceship must have fat whistle", spaceShip.startRunning(), Whistle.FAT);
     }
-
 }

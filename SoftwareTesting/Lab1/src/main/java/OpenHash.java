@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class OpenHash {
     final long bit = 1 << 31;
     private final Integer mod = 13;

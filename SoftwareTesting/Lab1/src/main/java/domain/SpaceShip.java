@@ -86,13 +86,16 @@ public class SpaceShip {
     }
 
     public void setMotorList(List<Motor> motorList) {
+        if (motorList == null) return;
         this.motorList = motorList;
     }
 
     public void setPeopleList(List<People> peopleList) {
+        if (peopleList==null) return;
         this.peopleList = peopleList;
     }
     public void addPeopleToSpaceShip(People e){
+        if (e == null) return;
         if (e.getAge() < 18 || e.getAge()>60) return;
         if (this.status == Status.NEW){
             if (peopleList.size() < 10) this.peopleList.add(e);
@@ -101,6 +104,7 @@ public class SpaceShip {
         }
     }
     public void addMotorToSpaceShip(Motor m){
+        if (m==null) return;
         this.motorList.add(m);
     }
 

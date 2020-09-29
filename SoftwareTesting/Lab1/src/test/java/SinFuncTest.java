@@ -1,5 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -24,9 +26,7 @@ public class SinFuncTest {
     public void testSinSmallerLimit(){
         n = 6;
         limit = 10;
-        System.out.println(sinFunc.sin(n,limit));
-        System.out.println(Math.sin(n));
-        assertTrue(message, Math.abs(Math.sin(n) - sinFunc.sin(n,limit) )<= eps);
+        assertFalse(message, Math.abs(Math.sin(n) - sinFunc.sin(n,limit) )<= eps);
     }
 
     /**
@@ -41,11 +41,41 @@ public class SinFuncTest {
     /**
      * Test sin with large limit
      */
-    @Test
+    //@Test
     public void testSinLargeLimit(){
         n = 20;
         limit = 100000;
         assertTrue(message, Math.abs(Math.sin(n) - sinFunc.sin(n, limit)) <= eps);
     }
 
+    @Test
+    public void testSinNegative(){
+        n=-10;
+        limit = 1000;
+        assertTrue(message, Math.abs(Math.sin(n) - sinFunc.sin(n, limit)) <= eps);
+    }
+
+    @Test public void testSin90degree(){
+        n = Math.PI/2;
+        limit = 1000;
+        assertTrue(message, Math.abs(1f - sinFunc.sin(n, limit)) <= eps);
+    }
+    @Test public void testSin0degree(){
+        n = 0;
+        limit = 1000;
+        assertTrue(message, Math.abs(0f - sinFunc.sin(n,limit) )<= eps);
+    }
+
+    @Test public void testSin180degree(){
+        n = Math.PI;
+        limit = 1000;
+        assertTrue(message, Math.abs(0f - sinFunc.sin(n,limit) )<= eps);
+    }
+
+    @Test public void testSin45degree(){
+        n = Math.PI/4;
+        limit= 1000;
+        System.out.println(sinFunc.sin(n,limit));
+        assertTrue(message, Math.abs(Math.sqrt(2)/2 - sinFunc.sin(n,limit) )<= eps);
+    }
 }

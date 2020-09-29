@@ -19,6 +19,3 @@ public class SinFunc {
     }
 
 }
-
-
-//https://en.wikipedia.org/wiki/Power_series
