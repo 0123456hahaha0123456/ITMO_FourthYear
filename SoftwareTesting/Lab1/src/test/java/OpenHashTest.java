@@ -58,4 +58,45 @@ public class OpenHashTest {
         assertTrue(hash.delete(5));
         assertEquals("Expected 9 elements remaining, but found " + hash.getSize(), 9, hash.getSize());
     }
+
+    @Test
+    public void testAddDifferentString(){
+        hash.clean();
+        String s = "test";
+        for(int i=0;i<10;i++){
+            hash.add(s+i);
+        }
+        assertEquals(10,hash.getSize());
+    }
+
+    @Test
+    public void testAddSameString(){
+        hash.clean();
+        String s = "this is only one string";
+        for(int i=0;i<100;i++){
+            hash.add(s);
+        }
+        assertEquals(100,hash.getSize());
+    }
+
+    @Test
+    public void testAddThenDeleteString(){
+        hash.clean();
+        String s = "test";
+        for(int i=0;i<10;i++){
+            hash.add(s+i);
+        }
+        assertTrue(hash.delete("test5"));
+        assertEquals(9,hash.getSize());
+    }
+
+    @Test
+    public void testAddIntegerThenString(){
+        hash.clean();
+        hash.add(5);
+        assertEquals( 1,hash.getSize());
+        hash.add("DUC");
+        assertEquals( 1,hash.getSize());
+    }
+
 }
