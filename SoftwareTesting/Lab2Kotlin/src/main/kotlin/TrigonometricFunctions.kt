@@ -35,9 +35,3 @@ open class TrigonometricFunctions{
     open fun tan(x : Double, eps : Double) = if (!check(x,eps)) sin(x,eps)/cos(x,eps) else wrongValue
 }
 
-
-fun main(){
-    val lf = TrigonometricFunctions()
-    val eps = 1e-8
-    println(1.0/Double.NaN)
-}

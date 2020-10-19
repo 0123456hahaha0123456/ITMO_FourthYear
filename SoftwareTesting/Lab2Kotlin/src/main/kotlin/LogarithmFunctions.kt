@@ -1,6 +1,10 @@
 import kotlin.math.*
 
 open class LogarithmFunctions{
+    companion object{
+        val EPS = 1e-8
+    }
+
     private val wrongValue = Double.NaN
 
     private fun check(x: Double, eps: Double) = (x.isInfinite() || x.isNaN() || x <= 0 || eps.isInfinite() || eps.isNaN())

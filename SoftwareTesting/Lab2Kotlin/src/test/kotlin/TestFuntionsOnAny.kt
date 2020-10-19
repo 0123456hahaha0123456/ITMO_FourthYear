@@ -2,13 +2,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
-import org.mockito.Mockito.CALLS_REAL_METHODS
 import kotlin.math.PI
 
-/**
-This class is used to test function on Sin/Cos/Ln
- */
-class TestFunctionsOnBasic{
+class TestFuntionsOnAny{
     companion object{
         val eps = 1e-8
         val ERR = 1e-4
@@ -18,65 +14,89 @@ class TestFunctionsOnBasic{
         @BeforeAll
         @JvmStatic
         fun initMock() {
-            val tf = Mockito.mock(TrigonometricFunctions::class.java, CALLS_REAL_METHODS)
-            val lf = Mockito.mock(LogarithmFunctions::class.java, CALLS_REAL_METHODS)
+            val tf = Mockito.mock(TrigonometricFunctions::class.java, Mockito.CALLS_REAL_METHODS)
+            val lf = Mockito.mock(LogarithmFunctions::class.java, Mockito.CALLS_REAL_METHODS)
             function = Functions(tf, lf)
 
-            //sin 0
+            //0
             Mockito.`when`(tf.sin(0.0, eps)).thenReturn(0.0)
+            Mockito.`when`(tf.cos(0.0, eps)).thenReturn(1.0)
             // sin(0 + eps)
             Mockito.`when`(tf.sin(0.0 + eps, eps)).thenReturn(0.0)
+            Mockito.`when`(tf.cos(0.0 + eps, eps)).thenReturn(1.0)
             // sin(0 - eps)
             Mockito.`when`(tf.sin(0.0 - eps, eps)).thenReturn(0.0)
+            Mockito.`when`(tf.cos(0.0 - eps, eps)).thenReturn(1.0)
             //sin(0 + circle) = sin(360)
             Mockito.`when`(tf.sin(0.0 + CIRCLE, eps)).thenReturn(0.0)
+            Mockito.`when`(tf.cos(0.0 + CIRCLE, eps)).thenReturn(1.0)
 
             //sin 45
-            Mockito.`when`(tf.sin(-PI/4, eps)).thenReturn(-0.70710678)
+            Mockito.`when`(tf.sin(-PI /4, eps)).thenReturn(-0.70710678)
+            Mockito.`when`(tf.cos(-PI /4, eps)).thenReturn(0.70710678)
             // sin(45 + eps)
-            Mockito.`when`(tf.sin(-PI/4 + eps, eps)).thenReturn(-0.70710678)
+            Mockito.`when`(tf.sin(-PI /4 + eps, eps)).thenReturn(-0.70710678)
+            Mockito.`when`(tf.cos(-PI /4 + eps, eps)).thenReturn(0.70710678)
             // sin(45 - eps)
-            Mockito.`when`(tf.sin(-PI/4 - eps, eps)).thenReturn(-0.70710678)
+            Mockito.`when`(tf.sin(-PI /4 - eps, eps)).thenReturn(-0.70710678)
+            Mockito.`when`(tf.cos(-PI /4 - eps, eps)).thenReturn(0.70710678)
             //sin(45 + circle)
-            Mockito.`when`(tf.sin(-PI/4 + CIRCLE, eps)).thenReturn(-0.70710678)
+            Mockito.`when`(tf.sin(-PI /4 + CIRCLE, eps)).thenReturn(-0.70710678)
+            Mockito.`when`(tf.cos(-PI /4 + CIRCLE, eps)).thenReturn(0.70710678)
 
             //sin 90
-            Mockito.`when`(tf.sin(-PI/2, eps)).thenReturn(1.0)
+            Mockito.`when`(tf.sin(-PI /2, eps)).thenReturn(-1.0)
+            Mockito.`when`(tf.cos(-PI /2, eps)).thenReturn(0.0)
             // sin(90 + eps)
-            Mockito.`when`(tf.sin(-PI/2 + eps, eps)).thenReturn(1.0)
+            Mockito.`when`(tf.sin(-PI /2 + eps, eps)).thenReturn(1.0)
+            Mockito.`when`(tf.cos(-PI /2 + eps, eps)).thenReturn(0.0)
             // sin(90 - eps)
-            Mockito.`when`(tf.sin(-PI/2 - eps, eps)).thenReturn(1.0)
+            Mockito.`when`(tf.sin(-PI /2 - eps, eps)).thenReturn(1.0)
+            Mockito.`when`(tf.cos(-PI /2 - eps, eps)).thenReturn(0.0)
             //sin(90 + circle)
-            Mockito.`when`(tf.sin(-PI/2 + CIRCLE, eps)).thenReturn(1.0)
+            Mockito.`when`(tf.sin(-PI /2 + CIRCLE, eps)).thenReturn(1.0)
+            Mockito.`when`(tf.cos(-PI /2 + CIRCLE, eps)).thenReturn(0.0)
 
             //sin 125
             Mockito.`when`(tf.sin(-25.0/36.0 * PI, eps)).thenReturn(-0.81915204)
+            Mockito.`when`(tf.cos(-25.0/36.0 * PI, eps)).thenReturn(-0.57357643)
+
             // sin(12 + eps)
             Mockito.`when`(tf.sin(-25.0/36.0 * PI + eps, eps)).thenReturn(-0.81915204)
+            Mockito.`when`(tf.cos(-25.0/36.0 * PI + eps, eps)).thenReturn(-0.57357643)
             // sin(125 - eps)
             Mockito.`when`(tf.sin(-25.0/36.0 * PI - eps, eps)).thenReturn(-0.81915204)
+            Mockito.`when`(tf.cos(-25.0/36.0 * PI - eps, eps)).thenReturn(-0.57357643)
             //sin(125 + circle)
             Mockito.`when`(tf.sin(-25.0/36.0 * PI + CIRCLE, eps)).thenReturn(-0.81915204)
+            Mockito.`when`(tf.cos(-25.0/36.0 * PI + CIRCLE, eps)).thenReturn(-0.57357643)
 
 
             //sin(225)
             Mockito.`when`(tf.sin(-5.0/4.0 * PI, eps)).thenReturn(0.70710678)
+            Mockito.`when`(tf.cos(-5.0/4.0 * PI, eps)).thenReturn(-0.70710678)
             // sin(225 + eps)
             Mockito.`when`(tf.sin(-5.0/4.0  * PI + eps, eps)).thenReturn(0.70710678)
+            Mockito.`when`(tf.cos(-5.0/4.0  * PI + eps, eps)).thenReturn(-0.70710678)
             // sin(225 - eps)
             Mockito.`when`(tf.sin(-5.0/4.0 * PI - eps, eps)).thenReturn(0.70710678)
+            Mockito.`when`(tf.cos(-5.0/4.0 * PI - eps, eps)).thenReturn(-0.70710678)
             //sin(225 + circle)
             Mockito.`when`(tf.sin(-5.0/4.0  * PI + CIRCLE, eps)).thenReturn(0.70710678)
+            Mockito.`when`(tf.cos(-5.0/4.0  * PI + CIRCLE, eps)).thenReturn(-0.70710678)
 
             //sin(-0.5)
             Mockito.`when`(tf.sin(-0.5, eps)).thenReturn(-0.47942553)
+            Mockito.`when`(tf.cos(-0.5, eps)).thenReturn(0.877583)
+
 
             //sin (-1.32)
             Mockito.`when`(tf.sin(-1.32, eps)).thenReturn(-0.9687151001)
+            Mockito.`when`(tf.cos(-1.32, eps)).thenReturn(0.248175)
 
             //sin (-13)
-            Mockito.`when`(tf.sin(-13.0, eps)).thenReturn(-0.4201670368)
-
+            Mockito.`when`(tf.sin(-13.0, eps)).thenReturn(-0.224951054)
+            Mockito.`when`(tf.cos(-13.0, eps)).thenReturn(0.974370064)
 
             //Mock on ln Function
             Mockito.`when`(lf.ln(0.132, eps)).thenReturn(-2.024953356)
@@ -96,7 +116,7 @@ class TestFunctionsOnBasic{
     @Test
     fun `testOnMinus90`(){
         assertEquals(Double.NaN, function!!.compute(-PI/2),ERR,
-            "Function 1 on -90 wrong")
+            "Function 1 on -Pi/2 wrong")
     }
     @Test
     fun `testOnMinus0`(){
@@ -144,37 +164,36 @@ class TestFunctionsOnBasic{
     @Test
     fun `test05`(){
         assertEquals(0.4032718721, function!!.compute(0.5),ERR,
-            "Function 2 on 0.4 wrong")
+            "Function 2 on 0.5 wrong")
     }
     @Test
     fun `test0897`(){
         assertEquals(0.047830382791, function!!.compute(0.897),ERR,
-            "Function 2 on 0.4 wrong")
+            "Function 2 on 0.897 wrong")
     }
     @Test
     fun `test1032`(){
         assertEquals(-0.127646229621, function!!.compute(1.32),ERR,
-            "Function 2 on 0.4 wrong")
+            "Function 2 on 1.32 wrong")
     }
     @Test
     fun `test15`(){
         assertEquals(-0.197131182483, function!!.compute(1.5),ERR,
-            "Function 2 on 0.4 wrong")
+            "Function 2 on 1.5 wrong")
     }
     @Test
     fun `test20`(){
         assertEquals(-0.4032718721, function!!.compute(2.0),ERR,
-            "Function 2 on 0.4 wrong")
+            "Function 2 on 2.0 wrong")
     }
     @Test
     fun `test50`(){
         assertEquals(-1.96363439885, function!!.compute(5.0),ERR,
-            "Function 2 on 0.4 wrong")
+            "Function 2 on 5.0 wrong")
     }
     @Test
     fun `test132`(){
         assertEquals(-37.349291045242, function!!.compute(132.0),ERR,
-            "Function 2 on 0.4 wrong")
+            "Function 2 on 1.32 wrong")
     }
 }
-

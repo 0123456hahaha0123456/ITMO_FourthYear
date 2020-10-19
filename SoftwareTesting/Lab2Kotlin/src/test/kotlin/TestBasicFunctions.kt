@@ -4,12 +4,16 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeAll
 import kotlin.math.*
 
+/**
+ * This class is used to test functions on Sin, Ln
+ */
 class TestBasicFunctions{
     companion object{
         var lf : LogarithmFunctions? = LogarithmFunctions()
         var tf : TrigonometricFunctions? = TrigonometricFunctions()
         val eps = 1e-8
         val ERR = 1e-4
+
         @BeforeAll
         @Test
         fun `testOnNull`(){
